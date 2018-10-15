@@ -1,6 +1,39 @@
 {% extends 'mysite/base.html' %}
 
 {% block 'content' %}
-<h1>Main Page</h1>
-<p>3gygiuhuijisdfhjfiwej</p>
+
+<div class="container">
+
+<form action="{% url 'home' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-row" style="margin-top:7%">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>First Name</label>
+                <input type="text" class="form-control" id="inlineformInputEmail1" placeholder="Enter name" name="fname">
+    
+
+                <label>Last Name</label>
+                    <input type="text" class="form-control" id="inlineformInputEmail1" placeholder="Enter name" name="lname">
+            
+            <button class="btn btn-secondary btn-lg" style="margin-top:7%">Tell Me Joke Button</button>
+            </div>
+
+    
+    <div class="form-inline col-sm-6">
+    <div class="card" width="49%" height="25px">
+        <img class="card-img-top" src="https://picsum.photos/200/100/?random
+        " alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Jokes</h5>
+          <p class="card-text">{{ joker }}</p>
+          <a href="{% urlv'portfolio %" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+</div>
+    
+  </form>
 {% endblock %}

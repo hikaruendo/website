@@ -4,9 +4,31 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Contact
 
+import requests,json
+
 
 def index(request):
-    return render(request, 'mysite/index.html')
+    if request.method =="POST":
+        firstname=request.POST.get('fname')
+        lastname=request.POST.get('lname')
+
+        r = requests.get('http://api.icndb.com/jokes/random?firstName=' + firstname + '&lastName=' + lastname)
+
+        json_data = json.loads(r.text)
+        joke=json_data.get('value').get('joke')
+        context={'joker':joke}
+        return render(request, 'mysite/index.html',context)
+    
+    else:
+        firstname='hikaru'
+        lastname='endo'
+
+        r = requests.get('http://api.icndb.com/jokes/random?firstName=' + firstname + '&lastName=' + lastname)
+
+        json_data = json.loads(r.text)
+        joke= json_data.get('value').get('joke')
+        context={'joker':joke}
+        return render(request, 'mysite/index.html',context)
 
 def about(request):
     return render(request, 'mysite/about.html')
